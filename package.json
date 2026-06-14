@@ -1,0 +1,15 @@
+{
+  "name": "sanity-starter",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --parallel -r dev",
+    "build": "pnpm --filter frontend build",
+    "deploy:studio": "pnpm --filter studio deploy",
+    "deploy:frontend": "pnpm --filter frontend deploy",
+    "import-sample-data": "pnpm --filter studio import-sample-data"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}

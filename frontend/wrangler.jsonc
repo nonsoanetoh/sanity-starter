@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sanity-starter",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2024-12-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  // R2 bucket for ISR cache — create with: wrangler r2 bucket create sanity-starter-cache
+  // "r2_buckets": [
+  //   {
+  //     "binding": "NEXT_INC_CACHE_R2_BUCKET",
+  //     "bucket_name": "sanity-starter-cache"
+  //   }
+  // ],
+  "vars": {
+    "NEXT_PUBLIC_SANITY_DATASET": "production"
+  }
+  // Secrets — set with: wrangler secret put SANITY_API_READ_TOKEN
+  // NEXT_PUBLIC_SANITY_PROJECT_ID
+  // SANITY_API_READ_TOKEN
+}

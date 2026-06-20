@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Documentation for the Actta Studio Sanity Starter — setup, features, deployment, and commands.",
+    "Documentation for the ACTTA Studio Sanity Starter — setup, features, deployment, and commands.",
   metadataBase: new URL(GUIDE_URL),
 };
 

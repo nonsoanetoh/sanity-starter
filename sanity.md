@@ -2,11 +2,11 @@
 
 Reference notes covering CMS structure, content modeling, page composition, and content primitives. Based on Edoardo Lunardi's [Content Architecture series](https://www.edoardolunardi.dev/blog/the-content-architecture-cms-structure) and Sanity's official opinionated guides.
 
-> **Using this with Actta Studio Sanity Starter:** This file is a **generic architecture reference**. Principles and patterns apply broadly; code samples often use illustrative names (`post`, `homePage`, `settings`) from blog-style CMS setups. For **this repo's actual schema, paths, GROQ, and conventions**, treat [`AGENTS.md`](AGENTS.md) and `sanity/schemas/` as source of truth. See [This starter](#this-starter-actta-studio) below for a name mapping.
+> **Using this with ACTTA Studio Sanity Starter:** This file is a **generic architecture reference**. Principles and patterns apply broadly; code samples often use illustrative names (`post`, `homePage`, `settings`) from blog-style CMS setups. For **this repo's actual schema, paths, GROQ, and conventions**, treat [`AGENTS.md`](AGENTS.md) and `sanity/schemas/` as source of truth. See [This starter](#this-starter-actta-studio) below for a name mapping.
 
 ---
 
-## This starter (Actta Studio)
+## This starter (ACTTA Studio)
 
 How generic concepts in this doc map to the embedded starter in this repository:
 
@@ -25,7 +25,7 @@ How generic concepts in this doc map to the embedded starter in this repository:
 | Standalone Studio repo | Embedded Studio at `/studio` in one Next.js app |
 | `HOMEPAGE_DOCUMENT_ID` | `SINGLETON_IDS.homepage` in `sanity/constants.ts` |
 
-**Seed content** (`seed/production.ndjson`): homepage, about, contact, CMS 404 page, site settings, five sample articles, two categories.
+**Seed content** (`seed/production.ndjson`): homepage, about, contact, CMS 404 page, site settings, five architecture articles, one category. Public CTAs link to the guide at `sanity-starter-guide.vercel.app`.
 
 **Agent guide:** [`AGENTS.md`](AGENTS.md) · **Distilled principles:** [`docs/architecture/content-architecture.md`](docs/architecture/content-architecture.md)
 
@@ -231,7 +231,7 @@ In a **shared page-builder** setup, both document types use the same `pageBuilde
 
 Because the composition layer is shared, improvements to section models propagate across Pages and Articles without schema fragmentation.
 
-> **Actta Studio starter:** Pages use `pageBuilder.sectionsArray`. Articles use Portable Text `body` instead — better for long-form editorial content. See [`AGENTS.md`](AGENTS.md) and [`docs/features/articles.md`](docs/features/articles.md).
+> **ACTTA Studio starter:** Pages use `pageBuilder.sectionsArray`. Articles use Portable Text `body` instead — better for long-form editorial content. See [`AGENTS.md`](AGENTS.md) and [`docs/features/articles.md`](docs/features/articles.md).
 
 ### The Global Site Document
 

@@ -1,6 +1,6 @@
 # SEO & sitemap
 
-Metadata, Open Graph, robots, favicon, and sitemap generation for the Actta Studio Sanity Starter.
+Metadata, Open Graph, robots, favicon, and sitemap generation for the ACTTA Studio Sanity Starter.
 
 ## SEO metadata field
 

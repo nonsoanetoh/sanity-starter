@@ -31,8 +31,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: {
-      default: "Actta Studio",
-      template: "%s | Actta Studio",
+      default: "ACTTA Studio",
+      template: "%s | ACTTA Studio",
     },
     ...(faviconUrl ? { icons: { icon: faviconUrl } } : {}),
   };

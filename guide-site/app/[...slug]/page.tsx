@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!doc) return {};
   return {
     title: doc.title,
-    description: `Actta Studio Sanity Starter — ${doc.title}`,
+    description: `ACTTA Studio Sanity Starter — ${doc.title}`,
   };
 }
 

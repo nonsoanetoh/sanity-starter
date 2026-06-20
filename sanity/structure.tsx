@@ -10,7 +10,7 @@ function singleton(S: StructureBuilder, opts: { title: string; schemaType: strin
 
 export function buildStructure(S: StructureBuilder) {
   return S.list()
-    .title("Actta Studio")
+    .title("ACTTA Studio")
     .items([
       singleton(S, { title: "Homepage", schemaType: "page", id: SINGLETON_IDS.homepage }),
       S.listItem()

@@ -1,6 +1,6 @@
 ---
 name: sanity-starter
-description: Conventions for the Actta Studio Sanity Starter. Load AGENTS.md and follow factory-first schema patterns.
+description: Conventions for the ACTTA Studio Sanity Starter. Load AGENTS.md and follow factory-first schema patterns.
 ---
 
 # Sanity Starter Skill

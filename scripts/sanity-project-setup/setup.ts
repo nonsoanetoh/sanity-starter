@@ -62,7 +62,7 @@ function printSection(title: string) {
 }
 
 async function main() {
-  console.log("Actta Studio Sanity Starter — project setup\n");
+  console.log("ACTTA Studio Sanity Starter — project setup\n");
 
   if (!existsSync(ENV_PATH)) {
     if (existsSync(EXAMPLE_PATH)) {

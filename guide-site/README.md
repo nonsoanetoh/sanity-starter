@@ -1,6 +1,6 @@
-# Actta Studio Guide Site
+# ACTTA Studio Guide Site
 
-Standalone documentation app for the Actta Studio Sanity Starter. Reads markdown from `../docs/` at build time.
+Standalone documentation app for the ACTTA Studio Sanity Starter. Reads markdown from `../docs/` at build time.
 
 **Not included when cloning the starter via degit/tiged** — see `.degitignore` at the repo root.
 

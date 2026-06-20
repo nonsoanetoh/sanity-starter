@@ -1,6 +1,6 @@
 # Deploying to Vercel
 
-Deploy the **Actta Studio Sanity Starter** to Vercel.
+Deploy the **ACTTA Studio Sanity Starter** to Vercel.
 
 ## 1. Connect the repo
 

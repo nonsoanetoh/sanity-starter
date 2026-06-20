@@ -53,7 +53,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
           onClick={onNavigate}
         >
           <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted-foreground)]">
-            Actta Guide
+            ACTTA Guide
           </span>
           <span className="mt-1.5 block text-[0.9375rem] font-semibold leading-snug tracking-tight text-[var(--color-foreground)]">
             {SITE_NAME}

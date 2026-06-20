@@ -13,7 +13,7 @@ import { buildStructure } from "./sanity/structure";
 
 export default defineConfig({
   name: "default",
-  title: "Actta Studio",
+  title: "ACTTA Studio",
   projectId: sanityRuntimeEnv.projectId,
   dataset: sanityRuntimeEnv.dataset,
   basePath: sanityRuntimeEnv.studioBasePath,

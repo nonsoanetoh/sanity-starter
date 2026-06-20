@@ -1,4 +1,4 @@
-# Actta Studio Sanity Starter — Agent Guide
+# ACTTA Studio Sanity Starter — Agent Guide
 
 Read this before making changes. Decisions live here so agents don't invent new patterns.
 

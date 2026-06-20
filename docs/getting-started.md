@@ -1,6 +1,6 @@
 # Getting started
 
-End-to-end setup for the Actta Studio Sanity Starter — from a fresh clone to a live Vercel deploy with preview, webhooks, analytics, and form notifications.
+End-to-end setup for the ACTTA Studio Sanity Starter — from a fresh clone to a live Vercel deploy with preview, webhooks, analytics, and form notifications.
 
 ## Prerequisites
 

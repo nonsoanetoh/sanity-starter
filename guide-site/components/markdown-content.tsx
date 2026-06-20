@@ -22,6 +22,11 @@ function resolveMarkdownHref(href: string): string | null {
 }
 
 const components: Components = {
+  table: ({ children, ...props }) => (
+    <div className="guide-table-wrap">
+      <table {...props}>{children}</table>
+    </div>
+  ),
   pre: ({ children, className, ...props }) => (
     <CodeBlock className={className} {...props}>
       {children}

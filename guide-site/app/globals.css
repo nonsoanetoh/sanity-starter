@@ -49,13 +49,62 @@
   .prose-guide {
     @apply prose prose-invert max-w-none
       prose-headings:scroll-mt-28 prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-[var(--color-foreground)]
-      prose-p:leading-7 prose-p:text-[var(--color-muted-foreground)] prose-li:leading-7 prose-li:text-[var(--color-muted-foreground)]
+      prose-h2:mt-10 prose-h2:mb-4 prose-h3:mt-8 prose-h3:mb-3
+      prose-p:my-5 prose-p:leading-7 prose-p:text-[var(--color-muted-foreground)]
+      prose-ul:my-5 prose-ol:my-5 prose-li:my-1.5 prose-li:leading-7 prose-li:text-[var(--color-muted-foreground)]
       prose-strong:text-[var(--color-foreground)]
       prose-a:font-medium prose-a:text-[var(--color-primary)] prose-a:no-underline prose-a:underline-offset-4 prose-a:hover:underline
       prose-pre:rounded-xl prose-pre:border prose-pre:border-[var(--color-border)] prose-pre:bg-[var(--color-muted)] prose-pre:px-4 prose-pre:py-3 prose-pre:pr-12 prose-pre:text-[var(--color-foreground)]
       prose-code:rounded prose-code:bg-[var(--color-muted)] prose-code:px-1.5 prose-code:py-0.5 prose-code:text-[0.875em] prose-code:text-[var(--color-foreground)] prose-code:before:content-none prose-code:after:content-none
-      prose-th:border prose-th:border-[var(--color-border)] prose-td:border prose-td:border-[var(--color-border)] prose-table:text-sm
-      prose-hr:border-[var(--color-border)];
+      prose-hr:my-10 prose-hr:border-[var(--color-border)];
+  }
+
+  .prose-guide table {
+    width: 100%;
+    margin-block: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .prose-guide thead {
+    background: var(--color-muted);
+  }
+
+  .prose-guide th {
+    padding: 0.75rem 1.125rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--color-foreground);
+    border-bottom: 1px solid var(--color-border);
+    white-space: nowrap;
+  }
+
+  .prose-guide th:not(:last-child),
+  .prose-guide td:not(:last-child) {
+    border-right: 1px solid var(--color-border);
+  }
+
+  .prose-guide td {
+    padding: 0.875rem 1.125rem;
+    vertical-align: top;
+    color: var(--color-muted-foreground);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .prose-guide tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .prose-guide tbody tr:hover td {
+    background: color-mix(in oklch, var(--color-surface) 80%, transparent);
+  }
+
+  .prose-guide td code {
+    white-space: nowrap;
   }
 
   .prose-guide pre {
@@ -126,6 +175,15 @@
 
   .code-block-copy-copied {
     @apply border-[var(--color-primary-soft)] text-[var(--color-primary)] opacity-100;
+  }
+
+  .guide-table-wrap {
+    @apply my-8 overflow-x-auto rounded-xl;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .guide-table-wrap > table {
+    min-width: 100%;
   }
 }
 

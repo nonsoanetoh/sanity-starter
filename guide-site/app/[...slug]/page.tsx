@@ -39,7 +39,7 @@ export default async function DocPage({ params }: PageProps) {
     <main className="flex-1 px-6 py-10 pt-20 lg:px-10 lg:py-12 lg:pt-12 xl:px-12">
       <div className="mx-auto flex max-w-6xl gap-12 xl:gap-16">
         <article className="min-w-0 flex-1 guide-fade-in">
-          <header className="mb-10 border-b border-[var(--color-border)] pb-8">
+          <header className="mb-12 border-b border-[var(--color-border)] pb-10">
             <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted-foreground)]">
               Guide
             </p>

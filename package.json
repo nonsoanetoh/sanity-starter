@@ -1,11 +1,12 @@
 {
-  "name": "sanity-starter",
+  "name": "actta-studio-sanity-starter",
   "private": true,
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
+    "prepare": "lefthook install",
     "check": "biome check .",
     "check:types": "tsc --noEmit",
     "format": "biome check --write .",

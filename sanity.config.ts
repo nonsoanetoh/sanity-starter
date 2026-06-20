@@ -1,18 +1,19 @@
 /// <reference types="node" />
-import { defineConfig } from 'sanity'
-import { structureTool } from 'sanity/structure'
-import { visionTool } from '@sanity/vision'
-import { presentationTool } from 'sanity/presentation'
-import { media } from 'sanity-plugin-media'
-import { muxInput } from 'sanity-plugin-mux-input'
-import { schemaTypes } from './sanity/schemas'
-import { buildStructure } from './sanity/structure'
-import { locations, mainDocuments } from './sanity/presentation/resolve'
-import { sanityRuntimeEnv } from './sanity/runtime-env'
+
+import { visionTool } from "@sanity/vision";
+import { defineConfig } from "sanity";
+import { presentationTool } from "sanity/presentation";
+import { structureTool } from "sanity/structure";
+import { media } from "sanity-plugin-media";
+import { muxInput } from "sanity-plugin-mux-input";
+import { locations, mainDocuments } from "./sanity/presentation/resolve";
+import { sanityRuntimeEnv } from "./sanity/runtime-env";
+import { schemaTypes } from "./sanity/schemas";
+import { buildStructure } from "./sanity/structure";
 
 export default defineConfig({
-  name: 'default',
-  title: 'The Content Architecture',
+  name: "default",
+  title: "Actta Studio",
   projectId: sanityRuntimeEnv.projectId,
   dataset: sanityRuntimeEnv.dataset,
   basePath: sanityRuntimeEnv.studioBasePath,
@@ -38,4 +39,4 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
-})
+});

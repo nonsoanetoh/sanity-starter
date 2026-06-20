@@ -1,8 +1,8 @@
 # Documentation
 
-Feature and architecture docs for the Actta Studio Sanity Starter.
+Feature and architecture docs for the ACTTA Studio Sanity Starter.
 
-**Full docs with navigation:** [guide.nonso-sanity-starter.vercel.app](https://guide.nonso-sanity-starter.vercel.app)
+**Full docs with navigation:** [sanity-starter-guide.vercel.app](https://sanity-starter-guide.vercel.app)
 
 ## Start here
 

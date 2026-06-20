@@ -1,6 +1,6 @@
 # FAQ
 
-Common questions when setting up and deploying the Actta Studio Sanity Starter.
+Common questions when setting up and deploying the ACTTA Studio Sanity Starter.
 
 ---
 
@@ -163,4 +163,4 @@ Use [tiged](https://github.com/tiged/tiged) for ignore support:
 npx tiged your-org/actta-studio-sanity-starter --mode=git
 ```
 
-Full documentation lives at [guide.nonso-sanity-starter.vercel.app](https://guide.nonso-sanity-starter.vercel.app).
+Full documentation lives at [sanity-starter-guide.vercel.app](https://sanity-starter-guide.vercel.app).

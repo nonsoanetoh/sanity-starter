@@ -6,7 +6,7 @@ This doc applies to the **template repository only**. The `guide-site/` folder i
 
 The guide is a separate Next.js app in `guide-site/` that renders markdown from the sibling `docs/` folder. Deploy it as a **second Vercel project** from the same GitHub repo.
 
-**Live URL:** [guide.nonso-sanity-starter.vercel.app](https://guide.nonso-sanity-starter.vercel.app)
+**Live URL:** [sanity-starter-guide.vercel.app](https://sanity-starter-guide.vercel.app)
 
 ## Vercel setup
 
@@ -30,7 +30,7 @@ The guide is a separate Next.js app in `guide-site/` that renders markdown from 
 In Vercel → project → **Settings → Domains**, add:
 
 ```
-guide.nonso-sanity-starter.vercel.app
+sanity-starter-guide.vercel.app
 ```
 
 Or a custom domain such as `guide.actta.studio` once DNS is configured.

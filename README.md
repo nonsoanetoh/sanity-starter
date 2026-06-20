@@ -67,4 +67,4 @@ npx tiged your-org/actta-studio-sanity-starter --mode=git
 
 The `guide-site/` folder is listed in [`.degitignore`](.degitignore) and excluded by tiged. Vanilla `degit` has no ignore support — delete `guide-site/` manually after cloning if needed.
 
-Markdown docs in `docs/` remain in cloned projects for local reference. Full navigable documentation lives at [guide.nonso-sanity-starter.vercel.app](https://guide.nonso-sanity-starter.vercel.app).
+Markdown docs in `docs/` remain in cloned projects for local reference. Full navigable documentation lives at [sanity-starter-guide.vercel.app](https://sanity-starter-guide.vercel.app).

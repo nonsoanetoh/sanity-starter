@@ -1,6 +1,14 @@
 # Documentation
 
-Feature and architecture docs for The Content Architecture starter.
+Feature and architecture docs for the Actta Studio Sanity Starter.
+
+**Full docs with navigation:** [guide.nonso-sanity-starter.vercel.app](https://guide.nonso-sanity-starter.vercel.app)
+
+## Start here
+
+- [Getting started](getting-started.md) — full setup from clone to Vercel deploy
+- [Commands](commands.md) — all `pnpm` scripts and code generation
+- [FAQ](faq.md) — common setup questions
 
 ## Sanity
 
@@ -10,11 +18,16 @@ Feature and architecture docs for The Content Architecture starter.
 
 ## Features
 
+- [Page builder](features/page-builder.md) — built-in sections reference
+- [Articles](features/articles.md) — editorial content at `/articles/[slug]`
+- [Contact forms](features/contact-forms.md) — submissions, Resend, Studio setup
+- [Media & Mux](features/media.md) — images, video, parallax
+- [SEO & sitemap](features/seo.md) — metadata, robots, sitemap rules
 - [Basic Auth](features/basic-auth.md)
+- [Presentation & preview](features/draft-mode.md)
 - [Redirects](features/redirects.md)
 - [Code generation (Plop)](features/code-generation.md)
 - [Spam prevention](features/spam-prevention.md)
-- [Draft mode & preview](features/draft-mode.md)
 - [View transitions](features/view-transitions.md)
 - [Umami tracking](features/umami-tracking.md)
 - [Git hooks](features/git-hooks.md)

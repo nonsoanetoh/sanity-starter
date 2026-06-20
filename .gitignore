@@ -12,6 +12,7 @@ dist/
 
 # Sanity
 .sanity/
+sanity-schema.json
 
 # OS / editor
 .DS_Store

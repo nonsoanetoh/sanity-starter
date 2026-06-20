@@ -23,6 +23,8 @@ Pages, articles, and the Site document use the shared **SEO metadata** object (`
 
 Document-specific values win over site defaults.
 
+**Canonical URLs** are always absolute: relative paths (page URI, `/articles`, etc.) are joined with `NEXT_PUBLIC_URL`.
+
 ## Favicon
 
 Upload a **Favicon** on the Site document (identity group). The root layout reads it via `generateMetadata` and sets the browser icon. Cached with the `site` tag — publish Site to update on production.

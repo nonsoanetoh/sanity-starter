@@ -1,11 +1,11 @@
-import { defineQuery } from 'next-sanity'
+import { defineQuery } from "next-sanity";
 
 const IMAGE = `{
   asset->{ _id, url, metadata { dimensions { width, height, aspectRatio }, lqip } },
   alt,
   hotspot,
   crop
-}`
+}`;
 
 const MEDIA = `{
   kind,
@@ -18,7 +18,7 @@ const MEDIA = `{
     "duration": data.duration,
     status
   }
-}`
+}`;
 
 const LINK_HREF = `select(
   link.linkType == "internal" => select(
@@ -27,10 +27,10 @@ const LINK_HREF = `select(
     link.internalPage->uri.current
   ),
   link.externalUrl
-)`
+)`;
 
-const CTA = `{ _key, label, "href": ${LINK_HREF}, "blank": coalesce(link.blank, false), variant }`
-const NAV_LINK = `{ label, "href": ${LINK_HREF}, "blank": coalesce(link.blank, false) }`
+const CTA = `{ _key, label, "href": ${LINK_HREF}, "blank": coalesce(link.blank, false), variant }`;
+const NAV_LINK = `{ label, "href": ${LINK_HREF}, "blank": coalesce(link.blank, false) }`;
 
 const PAGE_BUILDER = `{
   _key,
@@ -69,7 +69,7 @@ const PAGE_BUILDER = `{
     headline,
     subheadline
   },
-}`
+}`;
 
 export const SITE_QUERY = defineQuery(`
   *[_type == "site"][0]{
@@ -88,7 +88,7 @@ export const SITE_QUERY = defineQuery(`
     },
     "notFoundPage": notFoundPage->{ _id, title, "uri": uri.current }
   }
-`)
+`);
 
 export const PAGE_BY_URI_QUERY = defineQuery(`
   *[_type == "page" && (uri.current == $uri || (_id == "homepage" && $uri == "/"))][0]{
@@ -104,13 +104,13 @@ export const PAGE_BY_URI_QUERY = defineQuery(`
       noIndex
     }
   }
-`)
+`);
 
 export const PAGE_SECTIONS_QUERY = defineQuery(`
   *[_type == "page" && _id == $docId][0]{
     "sections": pageBuilder.sectionsArray[]${PAGE_BUILDER}
   }.sections
-`)
+`);
 
 export const ARTICLES_QUERY = defineQuery(`
   *[_type == "article" && defined(slug.current)] | order(publishedAt desc) {
@@ -122,11 +122,11 @@ export const ARTICLES_QUERY = defineQuery(`
     publishedAt,
     categories[]->{ title, "slug": slug.current }
   }
-`)
+`);
 
 export const ARTICLE_SLUGS_QUERY = defineQuery(`
   *[_type == "article" && defined(slug.current)]{ "slug": slug.current }
-`)
+`);
 
 export const ARTICLE_QUERY = defineQuery(`
   *[_type == "article" && slug.current == $slug][0]{
@@ -146,21 +146,35 @@ export const ARTICLE_QUERY = defineQuery(`
       noIndex
     }
   }
-`)
+`);
 
 export const SITEMAP_QUERY = defineQuery(`
   *[
-    _type == "page" &&
-    defined(uri.current) &&
-    seoMetadata.noIndex != true &&
-    passwordProtected != true
+    (
+      _type == "page" &&
+      defined(uri.current) &&
+      seoMetadata.noIndex != true &&
+      passwordProtected != true
+    ) || (
+      _type == "article" &&
+      defined(slug.current) &&
+      seoMetadata.noIndex != true &&
+      passwordProtected != true
+    )
   ]{
-    "uri": uri.current,
+    "uri": select(
+      _type == "page" => uri.current,
+      "/articles/" + slug.current
+    ),
     "updatedAt": _updatedAt,
-    "priority": select(_id == "homepage" => 1.0, 0.8)
+    "priority": select(
+      _id == "homepage" => 1.0,
+      _type == "article" => 0.6,
+      0.8
+    )
   }
-`)
+`);
 
 export const REDIRECTS_QUERY = defineQuery(`
   *[_type == "redirect"]{ source, destination, permanent }
-`)
+`);

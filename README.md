@@ -31,18 +31,18 @@ pnpm dev
 
 ## Environment
 
-See [`.env.example`](.env.example) and [docs/sanity/project-setup.md](docs/sanity/project-setup.md).
+See [`.env.example`](.env.example) and [docs/getting-started.md](docs/getting-started.md).
 
 ## Scripts
 
+See [docs/commands.md](docs/commands.md) for the full reference. Common commands:
+
 ```bash
-pnpm dev                  # Next.js dev server (includes Studio at /studio)
-pnpm build                # Production build
-pnpm sanity:typegen       # Generate types after schema changes
+pnpm dev                   # Next.js dev server (includes Studio at /studio)
+pnpm build                 # Production build
+pnpm sanity:typegen        # Generate types after schema changes
 pnpm sanity:dataset-import # Import seed/production.ndjson
-pnpm sanity:dataset-export # Backup dataset to ./backups/
-pnpm plop                 # Scaffold new page-builder sections
-pnpm sanity:typegen       # Regenerate types after schema changes
+pnpm plop                  # Scaffold new page-builder sections
 ```
 
 ## Deploy

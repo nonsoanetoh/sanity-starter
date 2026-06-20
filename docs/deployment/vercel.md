@@ -1,5 +1,7 @@
 # Deploying to Vercel
 
+Deploy the **Actta Studio Sanity Starter** to Vercel.
+
 ## 1. Connect the repo
 
 Import the project in [Vercel](https://vercel.com/new). Use these settings:
@@ -36,7 +38,7 @@ Configure a webhook in [sanity.io/manage](https://sanity.io/manage):
 - **Dataset:** production
 - **Trigger:** Create, Update, Delete
 - **Secret:** same value as `SANITY_REVALIDATE_SECRET`
-- **Projection:** `{ _id, _type, "uri": uri.current }`
+- **Projection:** `{ _id, _type, "uri": uri.current, "slug": slug.current }`
 
 ## 4. CORS origins
 

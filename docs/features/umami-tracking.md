@@ -4,7 +4,7 @@ Privacy-friendly analytics via [Umami](https://umami.is). Optional — the scrip
 
 ## Setup
 
-Add to `.env.local`:
+Add to `.env.local` (and Vercel for production):
 
 ```bash
 NEXT_PUBLIC_UMAMI_WEBSITE_ID=your-website-id
@@ -12,20 +12,26 @@ NEXT_PUBLIC_UMAMI_WEBSITE_ID=your-website-id
 NEXT_PUBLIC_UMAMI_HOST=https://cloud.umami.is
 ```
 
-The script is injected in the root layout via `components/umami-script.tsx`. It does not load on routes without the env var set.
+The script is injected in the root layout via `components/umami-script.tsx`. It does not load without `NEXT_PUBLIC_UMAMI_WEBSITE_ID` set.
+
+Redeploy after adding env vars — `NEXT_PUBLIC_*` values are baked in at build time.
+
+## Built-in events
+
+The **Contact Form Section** automatically fires `contact-form-submit` on successful submit when Umami is loaded. No extra wiring needed — see [contact-forms.md](contact-forms.md).
 
 ## Custom events
 
-Use the SSR-safe helper from client components:
+Use the SSR-safe helper from other client components:
 
 ```tsx
 'use client'
 
 import { trackEvent } from '~/features/umami/tracking'
 
-function ContactForm() {
+function NewsletterSignup() {
   const onSuccess = () => {
-    trackEvent('contact-form-submit', { section: 'homepage' })
+    trackEvent('newsletter-signup', { location: 'footer' })
   }
   // ...
 }

@@ -2,6 +2,33 @@
 
 Reference notes covering CMS structure, content modeling, page composition, and content primitives. Based on Edoardo Lunardi's [Content Architecture series](https://www.edoardolunardi.dev/blog/the-content-architecture-cms-structure) and Sanity's official opinionated guides.
 
+> **Using this with Actta Studio Sanity Starter:** This file is a **generic architecture reference**. Principles and patterns apply broadly; code samples often use illustrative names (`post`, `homePage`, `settings`) from blog-style CMS setups. For **this repo's actual schema, paths, GROQ, and conventions**, treat [`AGENTS.md`](AGENTS.md) and `sanity/schemas/` as source of truth. See [This starter](#this-starter-actta-studio) below for a name mapping.
+
+---
+
+## This starter (Actta Studio)
+
+How generic concepts in this doc map to the embedded starter in this repository:
+
+| Generic / example in this doc | This starter |
+|-------------------------------|--------------|
+| `studio/src/schemaTypes/` | `sanity/schemas/` |
+| `homePage` singleton | `page` with `_id: homepage`, `uri: /` |
+| `settings` singleton | `site` with `_id: site` |
+| `post` / `postType` | `article` |
+| `category` | `articleCategory` |
+| Page routing via `slug` | Page routing via `uri` (catch-all) |
+| `siteName`, `headerNav`, `siteProtection` | `name`, `navLinks`, `basicAuthEnabled` |
+| Flat `pageBuilder[]` array | `pageBuilder.sectionsArray[]` object wrapper |
+| Hero `image` field | Unified `media` object (image or Mux video) |
+| Articles use page builder | **This starter:** articles use Portable Text `body` |
+| Standalone Studio repo | Embedded Studio at `/studio` in one Next.js app |
+| `HOMEPAGE_DOCUMENT_ID` | `SINGLETON_IDS.homepage` in `sanity/constants.ts` |
+
+**Seed content** (`seed/production.ndjson`): homepage, about, contact, CMS 404 page, site settings, five sample articles, two categories.
+
+**Agent guide:** [`AGENTS.md`](AGENTS.md) · **Distilled principles:** [`docs/architecture/content-architecture.md`](docs/architecture/content-architecture.md)
+
 ---
 
 ## Part I — CMS Structure
@@ -193,16 +220,18 @@ export const pageType = defineType({
 
 ### Pages vs Articles
 
-Both use the same `pageBuilder` field. The difference is responsibility, not capability.
+In a **shared page-builder** setup, both document types use the same `pageBuilder` field. The difference is responsibility, not capability:
 
 | | Page | Article |
 |---|---|---|
 | **Purpose** | Defines layout for a site route | Publishable content with editorial context |
 | **Route** | Full path set by editor | Fixed namespace + slug |
 | **Extra fields** | — | `authors`, `categories`, `publishedAt` |
-| **Composition** | Same page builder | Same page builder |
+| **Composition** | Page builder sections | Same page builder |
 
-Because the composition layer is shared, improvements to section models propagate across Pages and Articles without schema fragmentation. Articles don't become special cases of Pages. Pages don't absorb publishing fields.
+Because the composition layer is shared, improvements to section models propagate across Pages and Articles without schema fragmentation.
+
+> **Actta Studio starter:** Pages use `pageBuilder.sectionsArray`. Articles use Portable Text `body` instead — better for long-form editorial content. See [`AGENTS.md`](AGENTS.md) and [`docs/features/articles.md`](docs/features/articles.md).
 
 ### The Global Site Document
 
@@ -950,6 +979,8 @@ export const POST_QUERY = defineQuery(`*[_type == "post" && slug.current == $slu
 
 ### Reusable Projection Fragments
 
+> **This starter:** See `features/sanity/queries.ts` — pages use `uri.current` (not `slug`), homepage is `_id == "homepage"`, sections are at `pageBuilder.sectionsArray[]`, hero uses `media` (not `image`).
+
 GROQ has no native fragments, but you can share projections via string interpolation:
 
 ```typescript
@@ -1000,9 +1031,9 @@ CMS STRUCTURE
 
 CONTENT MODELS
   ☐ Page document has 3 field groups: identity, content (builder), seo
-  ☐ Pages and Articles share the same pageBuilder field
-  ☐ Articles add publishing metadata (authors, categories, publishedAt)
-  ☐ Site document covers: siteName, notFoundPage, nav, footer, seo defaults, security
+  ☐ Pages and Articles share the same pageBuilder field (or: articles use Portable Text — see AGENTS.md)
+  ☐ Articles add publishing metadata (categories, publishedAt; authors optional)
+  ☐ Site document covers: name, logo, favicon, notFoundPage, nav, footer, seo defaults, redirects, security
   ☐ Fields describe what content IS, not how it looks
   ☐ Reusable content → references; page-specific content → objects
   ☐ Conditional hidden fields to reduce editor noise

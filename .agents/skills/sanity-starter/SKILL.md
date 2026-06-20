@@ -1,6 +1,6 @@
 ---
 name: sanity-starter
-description: Conventions for The Content Architecture starter. Load AGENTS.md and follow factory-first schema patterns.
+description: Conventions for the Actta Studio Sanity Starter. Load AGENTS.md and follow factory-first schema patterns.
 ---
 
 # Sanity Starter Skill
@@ -18,4 +18,5 @@ When working in this repository:
 ## Docs
 
 - [docs/README.md](../../docs/README.md) — feature and setup docs
-- [docs/sanity/project-setup.md](../../docs/sanity/project-setup.md) — env vars and webhooks
+- [docs/getting-started.md](../../docs/getting-started.md) — full setup from clone to deploy
+- [docs/commands.md](../../docs/commands.md) — pnpm scripts and code generation

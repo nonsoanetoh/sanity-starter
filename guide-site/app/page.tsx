@@ -1,6 +1,28 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { REPO_URL, SITE_NAME } from "~/lib/constants";
+import { GUIDE_URL, REPO_URL, SITE_DESCRIPTION, SITE_NAME } from "~/lib/constants";
+import { siteMetadata } from "~/lib/metadata";
 import { navChapters } from "~/lib/nav";
+
+export const metadata: Metadata = {
+  ...siteMetadata,
+  title: SITE_NAME,
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: GUIDE_URL,
+  },
+  openGraph: {
+    ...siteMetadata.openGraph,
+    url: GUIDE_URL,
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+  },
+  twitter: {
+    ...siteMetadata.twitter,
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+  },
+};
 
 export default function GuideHomePage() {
   return (

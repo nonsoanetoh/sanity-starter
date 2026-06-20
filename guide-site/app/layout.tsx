@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { GuideSidebar } from "~/components/guide-sidebar";
-import { GUIDE_URL, SITE_NAME } from "~/lib/constants";
+import { BRAND_COLOR } from "~/lib/constants";
+import { siteMetadata } from "~/lib/metadata";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,14 +15,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: SITE_NAME,
-    template: `%s | ${SITE_NAME}`,
-  },
-  description:
-    "Documentation for the ACTTA Studio Sanity Starter — setup, features, deployment, and commands.",
-  metadataBase: new URL(GUIDE_URL),
+export const metadata: Metadata = siteMetadata;
+
+export const viewport: Viewport = {
+  themeColor: BRAND_COLOR,
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

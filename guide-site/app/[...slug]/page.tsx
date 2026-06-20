@@ -4,7 +4,8 @@ import { DocPager } from "~/components/doc-pager";
 import { GuideToc } from "~/components/guide-toc";
 import { MarkdownContent } from "~/components/markdown-content";
 import { getAllDocSlugs, getDocBySlug } from "~/lib/docs";
-import { getAdjacentPages } from "~/lib/nav";
+import { buildDocMetadata } from "~/lib/metadata";
+import { findPageBySlug, getAdjacentPages } from "~/lib/nav";
 
 type PageProps = {
   params: Promise<{ slug: string[] }>;
@@ -18,12 +19,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const doc = getDocBySlug(slug.join("/"));
-  if (!doc) return {};
-  return {
-    title: doc.title,
-    description: `ACTTA Studio Sanity Starter — ${doc.title}`,
-  };
+  const slugPath = slug.join("/");
+  const page = findPageBySlug(slugPath);
+  if (!page) return {};
+  return buildDocMetadata(page);
 }
 
 export default async function DocPage({ params }: PageProps) {

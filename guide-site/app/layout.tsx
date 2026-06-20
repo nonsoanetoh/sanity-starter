@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="dark">
       <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen antialiased`}>
-        <div className="relative min-h-screen bg-[radial-gradient(ellipse_at_top,_oklch(0.18_0.04_275)_0%,_var(--color-background)_50%)]">
+        <div className="relative min-h-screen bg-[radial-gradient(ellipse_at_top,_oklch(0.18_0.05_145)_0%,_var(--color-background)_50%)]">
           <div className="flex min-h-screen">
             <GuideSidebar />
             <div className="flex min-w-0 flex-1 flex-col">{children}</div>

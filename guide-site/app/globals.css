@@ -3,18 +3,19 @@
 
 @layer base {
   :root {
-    --color-background: oklch(0.12 0.012 285);
-    --color-foreground: oklch(0.96 0.008 285);
-    --color-muted: oklch(0.2 0.014 285);
-    --color-muted-foreground: oklch(0.62 0.02 285);
-    --color-border: oklch(0.28 0.018 285);
-    --color-primary: oklch(0.74 0.14 275);
-    --color-primary-foreground: oklch(0.14 0.02 275);
-    --color-primary-soft: oklch(0.24 0.04 275);
-    --color-accent: oklch(0.22 0.03 275);
-    --color-sidebar: oklch(0.1 0.01 285);
-    --color-surface: oklch(0.16 0.014 285);
-    --color-surface-hover: oklch(0.19 0.016 285);
+    --color-brand: #2cce3e;
+    --color-background: oklch(0.12 0.014 145);
+    --color-foreground: oklch(0.96 0.01 145);
+    --color-muted: oklch(0.2 0.018 145);
+    --color-muted-foreground: oklch(0.62 0.024 145);
+    --color-border: oklch(0.28 0.022 145);
+    --color-primary: var(--color-brand);
+    --color-primary-foreground: oklch(0.14 0.04 145);
+    --color-primary-soft: oklch(0.24 0.06 145);
+    --color-accent: oklch(0.22 0.05 145);
+    --color-sidebar: oklch(0.1 0.012 145);
+    --color-surface: oklch(0.16 0.018 145);
+    --color-surface-hover: oklch(0.19 0.02 145);
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     --duration-fast: 150ms;
     --duration-normal: 220ms;
@@ -51,10 +52,27 @@
       prose-p:leading-7 prose-p:text-[var(--color-muted-foreground)] prose-li:leading-7 prose-li:text-[var(--color-muted-foreground)]
       prose-strong:text-[var(--color-foreground)]
       prose-a:font-medium prose-a:text-[var(--color-primary)] prose-a:no-underline prose-a:underline-offset-4 prose-a:hover:underline
-      prose-pre:rounded-xl prose-pre:border prose-pre:border-[var(--color-border)] prose-pre:bg-[var(--color-muted)] prose-pre:text-[var(--color-foreground)]
+      prose-pre:rounded-xl prose-pre:border prose-pre:border-[var(--color-border)] prose-pre:bg-[var(--color-muted)] prose-pre:px-4 prose-pre:py-3 prose-pre:pr-12 prose-pre:text-[var(--color-foreground)]
       prose-code:rounded prose-code:bg-[var(--color-muted)] prose-code:px-1.5 prose-code:py-0.5 prose-code:text-[0.875em] prose-code:text-[var(--color-foreground)] prose-code:before:content-none prose-code:after:content-none
       prose-th:border prose-th:border-[var(--color-border)] prose-td:border prose-td:border-[var(--color-border)] prose-table:text-sm
       prose-hr:border-[var(--color-border)];
+  }
+
+  .prose-guide pre {
+    font-family: var(--font-geist-mono), ui-monospace, monospace;
+  }
+
+  .prose-guide pre code {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+    border-radius: 0;
+    font-size: inherit;
+  }
+
+  .prose-guide pre code::before,
+  .prose-guide pre code::after {
+    content: none;
   }
 
   .guide-surface {
@@ -75,7 +93,7 @@
   }
 
   .guide-btn-primary {
-    @apply inline-flex items-center rounded-full bg-[var(--color-primary)] px-5 py-2.5 text-sm font-medium text-[var(--color-primary-foreground)] shadow-[0_1px_2px_oklch(0_0_0_/_0.4)] transition-[transform,opacity,box-shadow] duration-[var(--duration-normal)] ease-[var(--ease-out)] hover:-translate-y-0.5 hover:opacity-95 hover:shadow-[0_8px_24px_oklch(0.74_0.14_275_/_0.25)] active:translate-y-0;
+    @apply inline-flex items-center rounded-full bg-[var(--color-primary)] px-5 py-2.5 text-sm font-medium text-[var(--color-primary-foreground)] shadow-[0_1px_2px_oklch(0_0_0_/_0.4)] transition-[transform,opacity,box-shadow] duration-[var(--duration-normal)] ease-[var(--ease-out)] hover:-translate-y-0.5 hover:opacity-95 hover:shadow-[0_8px_24px_oklch(0.773_0.218_145_/_0.3)] active:translate-y-0;
   }
 
   .guide-btn-secondary {
@@ -92,6 +110,22 @@
 
   .guide-fade-in-delay-2 {
     animation-delay: 120ms;
+  }
+
+  .code-block {
+    @apply relative my-6;
+  }
+
+  .code-block > pre {
+    @apply !my-0;
+  }
+
+  .code-block-copy {
+    @apply absolute right-2.5 top-2.5 z-10 flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-muted-foreground)] opacity-80 transition-[opacity,color,background-color,border-color,transform] duration-[var(--duration-fast)] ease-[var(--ease-out)] hover:border-[var(--color-primary-soft)] hover:bg-[var(--color-muted)] hover:text-[var(--color-primary)] focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)] active:scale-95 group-hover:opacity-100;
+  }
+
+  .code-block-copy-copied {
+    @apply border-[var(--color-primary-soft)] text-[var(--color-primary)] opacity-100;
   }
 }
 

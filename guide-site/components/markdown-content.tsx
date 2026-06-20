@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
+import { CodeBlock } from "~/components/code-block";
 
 function resolveMarkdownHref(href: string): string | null {
   if (!href.endsWith(".md")) return null;
@@ -21,6 +22,11 @@ function resolveMarkdownHref(href: string): string | null {
 }
 
 const components: Components = {
+  pre: ({ children, className, ...props }) => (
+    <CodeBlock className={className} {...props}>
+      {children}
+    </CodeBlock>
+  ),
   a: ({ href, children }) => {
     if (href) {
       const internal = resolveMarkdownHref(href);

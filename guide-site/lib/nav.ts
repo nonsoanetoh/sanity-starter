@@ -18,7 +18,7 @@ export const navChapters: NavChapter[] = [
         slug: "getting-started",
         title: "Getting started",
         file: "getting-started.md",
-        description: "Full setup from clone to Vercel deploy",
+        description: "Degit the template and set up through Vercel deploy",
       },
       {
         slug: "commands",

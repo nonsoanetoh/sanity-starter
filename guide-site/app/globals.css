@@ -1,0 +1,115 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@layer base {
+  :root {
+    --color-background: oklch(0.12 0.012 285);
+    --color-foreground: oklch(0.96 0.008 285);
+    --color-muted: oklch(0.2 0.014 285);
+    --color-muted-foreground: oklch(0.62 0.02 285);
+    --color-border: oklch(0.28 0.018 285);
+    --color-primary: oklch(0.74 0.14 275);
+    --color-primary-foreground: oklch(0.14 0.02 275);
+    --color-primary-soft: oklch(0.24 0.04 275);
+    --color-accent: oklch(0.22 0.03 275);
+    --color-sidebar: oklch(0.1 0.01 285);
+    --color-surface: oklch(0.16 0.014 285);
+    --color-surface-hover: oklch(0.19 0.016 285);
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --duration-fast: 150ms;
+    --duration-normal: 220ms;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@layer components {
+  .prose-guide {
+    @apply prose prose-invert max-w-none
+      prose-headings:scroll-mt-28 prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-[var(--color-foreground)]
+      prose-p:leading-7 prose-p:text-[var(--color-muted-foreground)] prose-li:leading-7 prose-li:text-[var(--color-muted-foreground)]
+      prose-strong:text-[var(--color-foreground)]
+      prose-a:font-medium prose-a:text-[var(--color-primary)] prose-a:no-underline prose-a:underline-offset-4 prose-a:hover:underline
+      prose-pre:rounded-xl prose-pre:border prose-pre:border-[var(--color-border)] prose-pre:bg-[var(--color-muted)] prose-pre:text-[var(--color-foreground)]
+      prose-code:rounded prose-code:bg-[var(--color-muted)] prose-code:px-1.5 prose-code:py-0.5 prose-code:text-[0.875em] prose-code:text-[var(--color-foreground)] prose-code:before:content-none prose-code:after:content-none
+      prose-th:border prose-th:border-[var(--color-border)] prose-td:border prose-td:border-[var(--color-border)] prose-table:text-sm
+      prose-hr:border-[var(--color-border)];
+  }
+
+  .guide-surface {
+    @apply rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] shadow-[0_1px_2px_oklch(0_0_0_/_0.35)];
+  }
+
+  .guide-nav-link {
+    @apply relative block rounded-lg px-3 py-2 text-[0.8125rem] leading-snug transition-[color,background-color] duration-[var(--duration-normal)] ease-[var(--ease-out)];
+  }
+
+  .guide-nav-link-active {
+    @apply bg-[var(--color-primary-soft)] font-medium text-[var(--color-primary)];
+  }
+
+  .guide-nav-link-active::before {
+    content: "";
+    @apply absolute left-0 top-1/2 h-5 w-0.5 -translate-y-1/2 rounded-full bg-[var(--color-primary)];
+  }
+
+  .guide-btn-primary {
+    @apply inline-flex items-center rounded-full bg-[var(--color-primary)] px-5 py-2.5 text-sm font-medium text-[var(--color-primary-foreground)] shadow-[0_1px_2px_oklch(0_0_0_/_0.4)] transition-[transform,opacity,box-shadow] duration-[var(--duration-normal)] ease-[var(--ease-out)] hover:-translate-y-0.5 hover:opacity-95 hover:shadow-[0_8px_24px_oklch(0.74_0.14_275_/_0.25)] active:translate-y-0;
+  }
+
+  .guide-btn-secondary {
+    @apply inline-flex items-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-5 py-2.5 text-sm font-medium transition-[transform,background-color,border-color] duration-[var(--duration-normal)] ease-[var(--ease-out)] hover:-translate-y-0.5 hover:border-[var(--color-primary-soft)] hover:bg-[var(--color-surface-hover)] active:translate-y-0;
+  }
+
+  .guide-fade-in {
+    animation: guideFadeIn 0.5s var(--ease-out) both;
+  }
+
+  .guide-fade-in-delay-1 {
+    animation-delay: 60ms;
+  }
+
+  .guide-fade-in-delay-2 {
+    animation-delay: 120ms;
+  }
+}
+
+@keyframes guideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guide-fade-in,
+  .guide-fade-in-delay-1,
+  .guide-fade-in-delay-2 {
+    animation: none;
+  }
+}

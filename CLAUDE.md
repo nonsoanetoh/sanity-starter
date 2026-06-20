@@ -1,6 +1,6 @@
 @AGENTS.md
 
-This repository uses **The Content Architecture** conventions. Read `AGENTS.md` before making changes.
+This repository is the **Actta Studio Sanity Starter**. It uses content architecture conventions from `sanity.md`. Read `AGENTS.md` before making changes.
 
 Quick links:
 - [Agent guide](AGENTS.md)

@@ -160,7 +160,7 @@ No. The `guide-site/` folder is excluded via `.degitignore` so cloned starters d
 Use [tiged](https://github.com/tiged/tiged) for ignore support — full walkthrough in [getting-started.md](getting-started.md#1-get-the-starter):
 
 ```bash
-npx tiged your-org/actta-studio-sanity-starter --mode=git my-project
+npx tiged nonsoanetoh/sanity-starter --mode=git my-project
 ```
 
 Full documentation lives at [sanity-starter-guide.vercel.app](https://sanity-starter-guide.vercel.app).

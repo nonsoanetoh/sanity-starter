@@ -28,11 +28,11 @@ The starter lives in a **template repository** (this repo). You do not fork it f
 [tiged](https://github.com/tiged/tiged) excludes folders listed in [`.degitignore`](../../.degitignore) — notably `guide-site/`, which is only for the deployed documentation app in the template repo.
 
 ```bash
-npx tiged your-org/actta-studio-sanity-starter --mode=git my-project
+npx tiged nonsoanetoh/sanity-starter --mode=git my-project
 cd my-project
 ```
 
-Replace `your-org/actta-studio-sanity-starter` with the template repo path (GitHub `owner/repo`).
+Template repo: [github.com/nonsoanetoh/sanity-starter](https://github.com/nonsoanetoh/sanity-starter)
 
 **What you get:**
 
@@ -59,8 +59,8 @@ Push to GitHub (or GitLab) before connecting Vercel in step 9.
 Use this if you are **contributing to the template** or working from a fork that should keep full history:
 
 ```bash
-git clone <your-repo-url>
-cd actta-studio-sanity-starter
+git clone https://github.com/nonsoanetoh/sanity-starter.git
+cd sanity-starter
 ```
 
 If you cloned the full template repo, you can delete `guide-site/` locally — it is not required to run the starter.
@@ -68,7 +68,7 @@ If you cloned the full template repo, you can delete `guide-site/` locally — i
 ### Vanilla degit (no ignore support)
 
 ```bash
-npx degit your-org/actta-studio-sanity-starter my-project
+npx degit nonsoanetoh/sanity-starter my-project
 cd my-project
 rm -rf guide-site   # not needed in your project
 ```

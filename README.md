@@ -62,7 +62,8 @@ See [`AGENTS.md`](AGENTS.md), [`docs/README.md`](docs/README.md), and [`sanity.m
 Clone without the guide site (recommended):
 
 ```bash
-npx tiged your-org/actta-studio-sanity-starter --mode=git
+npx tiged nonsoanetoh/sanity-starter --mode=git my-project
+cd my-project
 ```
 
 The `guide-site/` folder is listed in [`.degitignore`](.degitignore) and excluded by tiged. Vanilla `degit` has no ignore support — delete `guide-site/` manually after cloning if needed.

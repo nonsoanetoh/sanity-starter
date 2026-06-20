@@ -22,7 +22,7 @@ The guide is a separate Next.js app in `guide-site/` that renders markdown from 
 | Install command | `pnpm install` |
 
 3. **Environment variables:** none required (docs are read from the filesystem at build time)
-4. Optional: `NEXT_PUBLIC_REPO_URL` — adds a "View on GitHub" link on the landing page
+4. Optional: `NEXT_PUBLIC_REPO_URL` — overrides the default GitHub link (`https://github.com/nonsoanetoh/sanity-starter`) on the landing page
 5. Deploy
 
 ## Custom domain

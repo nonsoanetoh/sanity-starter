@@ -16,6 +16,8 @@ pnpm dev
 - **Site:** http://localhost:3000
 - **Studio:** http://localhost:3000/studio
 
+Full setup guide (API keys, Vercel, webhooks, Umami, Resend): [docs/getting-started.md](docs/getting-started.md)
+
 ## Structure
 
 | Folder | Purpose |

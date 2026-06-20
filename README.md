@@ -55,4 +55,16 @@ Optimized for **Vercel**. See [docs/deployment/vercel.md](docs/deployment/vercel
 
 This starter uses the **new schema shape** (`page` with URI, `site` singleton, `article` at `/articles`). If you have content from the old monorepo schema (`homePage`, `settings`, `post`), re-import or migrate documents in Studio.
 
-See [`AGENTS.md`](AGENTS.md), [`docs/README.md`](docs/README.md), [`sanity.md`](sanity.md), and [`directory.txt`](directory.txt).
+See [`AGENTS.md`](AGENTS.md), [`docs/README.md`](docs/README.md), and [`sanity.md`](sanity.md).
+
+## Using this as a template
+
+Clone without the guide site (recommended):
+
+```bash
+npx tiged your-org/actta-studio-sanity-starter --mode=git
+```
+
+The `guide-site/` folder is listed in [`.degitignore`](.degitignore) and excluded by tiged. Vanilla `degit` has no ignore support — delete `guide-site/` manually after cloning if needed.
+
+Markdown docs in `docs/` remain in cloned projects for local reference. Full navigable documentation lives at [guide.nonso-sanity-starter.vercel.app](https://guide.nonso-sanity-starter.vercel.app).

@@ -1,6 +1,8 @@
-# The Content Architecture — Sanity Starter
+# Actta Studio Sanity Starter
 
 Single Next.js app with embedded Sanity Studio, catch-all page routing, and production plumbing (cache tags, webhooks, SEO, Basic Auth).
+
+**Documentation:** [guide.nonso-sanity-starter.vercel.app](https://guide.nonso-sanity-starter.vercel.app)
 
 ## Quick start
 

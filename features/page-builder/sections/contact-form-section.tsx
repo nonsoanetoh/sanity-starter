@@ -1,26 +1,35 @@
-'use client'
+"use client";
 
-import { useActionState } from 'react'
-import { FormHoneypot } from '~/features/spam-prevention/form-honeypot'
-import { useCanSubmit, useSpamPrevention } from '~/features/spam-prevention/use-spam-prevention'
-import { submitContactForm } from '~/features/page-builder/actions/submit-contact-form'
+import { useActionState, useEffect, useRef } from "react";
+import { submitContactForm } from "~/features/page-builder/actions/submit-contact-form";
+import { FormHoneypot } from "~/features/spam-prevention/form-honeypot";
+import { useCanSubmit, useSpamPrevention } from "~/features/spam-prevention/use-spam-prevention";
+import { trackEvent } from "~/features/umami/tracking";
 
 type ContactFormSectionProps = {
-  headline?: string | null
-  subheadline?: string | null
-  submitLabel?: string | null
-  successMessage?: string | null
-}
+  headline?: string | null;
+  subheadline?: string | null;
+  submitLabel?: string | null;
+  successMessage?: string | null;
+};
 
 export function ContactFormSection({
   headline,
   subheadline,
-  submitLabel = 'Send message',
-  successMessage = 'Thanks — we received your message.',
+  submitLabel = "Send message",
+  successMessage = "Thanks — we received your message.",
 }: ContactFormSectionProps) {
-  const { startedAt } = useSpamPrevention()
-  const canSubmit = useCanSubmit(startedAt)
-  const [state, formAction, pending] = useActionState(submitContactForm, null)
+  const { startedAt } = useSpamPrevention();
+  const canSubmit = useCanSubmit(startedAt);
+  const [state, formAction, pending] = useActionState(submitContactForm, null);
+  const trackedRef = useRef(false);
+
+  useEffect(() => {
+    if (state?.ok && !trackedRef.current) {
+      trackedRef.current = true;
+      trackEvent("contact-form-submit", { section: "contact-form" });
+    }
+  }, [state?.ok]);
 
   if (state?.ok) {
     return (
@@ -29,7 +38,7 @@ export function ContactFormSection({
           <p className="text-lg font-medium">{successMessage}</p>
         </div>
       </section>
-    )
+    );
   }
 
   return (
@@ -100,10 +109,10 @@ export function ContactFormSection({
             disabled={pending || !canSubmit}
             className="w-full rounded-lg bg-(--color-primary) text-(--color-primary-foreground) px-5 py-2.5 text-sm font-medium transition-opacity hover:opacity-90 disabled:opacity-50"
           >
-            {pending ? 'Sending…' : submitLabel}
+            {pending ? "Sending…" : submitLabel}
           </button>
         </form>
       </div>
     </section>
-  )
+  );
 }

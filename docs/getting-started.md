@@ -1,6 +1,8 @@
 # Getting started
 
-End-to-end setup for the ACTTA Studio Sanity Starter — from a fresh clone to a live Vercel deploy with preview, webhooks, analytics, and form notifications.
+End-to-end setup for the ACTTA Studio Sanity Starter — from pulling the template into a new project through a live Vercel deploy with preview, webhooks, analytics, and form notifications.
+
+**Full docs (navigable):** [sanity-starter-guide.vercel.app](https://sanity-starter-guide.vercel.app)
 
 ## Prerequisites
 
@@ -17,19 +19,77 @@ Optional later:
 
 ---
 
-## 1. Install dependencies
+## 1. Get the starter
+
+The starter lives in a **template repository** (this repo). You do not fork it for a new client project — you **degit** a clean copy into your own folder or repo.
+
+### Recommended: tiged (respects `.degitignore`)
+
+[tiged](https://github.com/tiged/tiged) excludes folders listed in [`.degitignore`](../../.degitignore) — notably `guide-site/`, which is only for the deployed documentation app in the template repo.
+
+```bash
+npx tiged your-org/actta-studio-sanity-starter --mode=git my-project
+cd my-project
+```
+
+Replace `your-org/actta-studio-sanity-starter` with the template repo path (GitHub `owner/repo`).
+
+**What you get:**
+
+| Included | Excluded |
+|----------|----------|
+| Next.js app + embedded Studio | `guide-site/` (separate Vercel project in the template repo) |
+| `docs/` markdown for local reference | Template git history |
+| Seed data, scripts, schemas | — |
+
+Use the hosted guide for navigation and search: [sanity-starter-guide.vercel.app](https://sanity-starter-guide.vercel.app). You do not need `guide-site/` in your project.
+
+Initialize your own git repo when ready:
+
+```bash
+git init
+git add .
+git commit -m "Initial commit from ACTTA Studio Sanity Starter"
+```
+
+Push to GitHub (or GitLab) before connecting Vercel in step 9.
+
+### Alternative: git clone
+
+Use this if you are **contributing to the template** or working from a fork that should keep full history:
 
 ```bash
 git clone <your-repo-url>
 cd actta-studio-sanity-starter
-pnpm install
 ```
+
+If you cloned the full template repo, you can delete `guide-site/` locally — it is not required to run the starter.
+
+### Vanilla degit (no ignore support)
+
+```bash
+npx degit your-org/actta-studio-sanity-starter my-project
+cd my-project
+rm -rf guide-site   # not needed in your project
+```
+
+Prefer **tiged** so `guide-site/` is never downloaded.
 
 ---
 
-## 2. Create your Sanity project
+## 2. Install dependencies
 
-If you already have a project, skip to step 3.
+```bash
+pnpm install
+```
+
+Lefthook installs git hooks automatically via the `prepare` script.
+
+---
+
+## 3. Create your Sanity project
+
+If you already have a project, skip to step 4.
 
 1. Go to [sanity.io/manage](https://sanity.io/manage)
 2. Create a project (or use an existing one)
@@ -38,7 +98,7 @@ If you already have a project, skip to step 3.
 
 ---
 
-## 3. Local environment
+## 4. Local environment
 
 Run the setup wizard — it creates `.env.local` from `.env.example` if needed:
 
@@ -67,7 +127,7 @@ NEXT_PUBLIC_SANITY_STUDIO_BASE_PATH=/studio
 
 ---
 
-## 4. Sanity API tokens
+## 5. Sanity API tokens
 
 Create tokens at [sanity.io/manage](https://sanity.io/manage) → your project → **API → Tokens**.
 
@@ -97,7 +157,7 @@ Required for contact form submissions to write `contactFormSubmission` documents
 
 ---
 
-## 5. CORS origins (local)
+## 6. CORS origins (local)
 
 In Sanity → **API → CORS origins**, add:
 
@@ -109,7 +169,7 @@ Credentials are required for live preview and draft mode.
 
 ---
 
-## 6. Import seed content
+## 7. Import seed content
 
 Load the starter homepage, site settings, and sample content:
 
@@ -126,7 +186,7 @@ Visit:
 
 ---
 
-## 7. Verify locally
+## 8. Verify locally
 
 1. Homepage loads at `/`
 2. Studio loads at `/studio` — sign in with your Sanity account
@@ -135,7 +195,7 @@ Visit:
 
 ---
 
-## 8. Deploy to Vercel
+## 9. Deploy to Vercel
 
 ### Connect the repo
 
@@ -161,7 +221,7 @@ Copy all values from `.env.local` into Vercel → **Settings → Environment Var
 | `NEXT_PUBLIC_URL` | `https://your-app.vercel.app` |
 | `SANITY_API_VIEW_TOKEN` | Viewer token |
 | `SANITY_API_EDIT_TOKEN` | Editor token |
-| `SANITY_REVALIDATE_SECRET` | random secret (see step 9) |
+| `SANITY_REVALIDATE_SECRET` | random secret (see step 10) |
 
 Use the **base Vercel URL** for `NEXT_PUBLIC_URL` — no trailing slash, no `/studio`.
 
@@ -169,7 +229,7 @@ Deploy once to get your live URL, then update `NEXT_PUBLIC_URL` if needed and re
 
 ---
 
-## 9. Revalidation webhook
+## 10. Revalidation webhook
 
 The webhook clears Next.js cache when content is published so the live site updates within seconds.
 
@@ -228,7 +288,7 @@ See also [deployment/vercel.md](deployment/vercel.md) and [faq.md](faq.md).
 
 ---
 
-## 10. CORS origins (production)
+## 11. CORS origins (production)
 
 Add your deploy URL in Sanity → **API → CORS origins**:
 
@@ -240,7 +300,7 @@ Use the base URL only — not `/studio`.
 
 ---
 
-## 11. Umami analytics (optional)
+## 12. Umami analytics (optional)
 
 Privacy-friendly page analytics. The script only loads when configured.
 
@@ -264,7 +324,7 @@ See [features/umami-tracking.md](features/umami-tracking.md).
 
 ---
 
-## 12. Resend email notifications (optional)
+## 13. Resend email notifications (optional)
 
 Contact forms always save to Sanity when `SANITY_API_EDIT_TOKEN` is set. Email notifications are optional.
 
@@ -291,7 +351,7 @@ See [features/contact-forms.md](features/contact-forms.md).
 
 ---
 
-## 13. Staging gate with Basic Auth (optional)
+## 14. Staging gate with Basic Auth (optional)
 
 For pre-launch review on Vercel:
 
@@ -308,7 +368,7 @@ See [features/basic-auth.md](features/basic-auth.md).
 
 ---
 
-## 14. Mux video (optional)
+## 15. Mux video (optional)
 
 For video uploads in Studio:
 
@@ -325,6 +385,11 @@ SANITY_STUDIO_MUX_TOKEN_SECRET=your-mux-token-secret
 ## Final checklist
 
 ```
+GET THE STARTER
+  ☐ tiged into new folder (or git clone if contributing to template)
+  ☐ git init + push to your remote (before Vercel)
+  ☐ pnpm install
+
 LOCAL
   ☐ pnpm install
   ☐ .env.local filled in (project ID, dataset, URL)

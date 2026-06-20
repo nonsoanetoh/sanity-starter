@@ -1,5 +1,7 @@
 # Project setup
 
+For the full end-to-end guide (tokens, Vercel, webhooks, Umami, Resend), see [getting-started.md](../getting-started.md).
+
 ## Quick start
 
 ```bash
@@ -34,7 +36,7 @@ pnpm dev
 3. Dataset: `production`
 4. Trigger: Create, Update, Delete
 5. Secret: same as `SANITY_REVALIDATE_SECRET` in env
-6. Projection: `{ _id, _type, "uri": uri.current }`
+6. Projection: `{ _id, _type, "uri": uri.current, "slug": slug.current }`
 
 ## CORS
 

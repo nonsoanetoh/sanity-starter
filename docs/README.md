@@ -6,7 +6,7 @@ Feature and architecture docs for the ACTTA Studio Sanity Starter.
 
 ## Start here
 
-- [Getting started](getting-started.md) — full setup from clone to Vercel deploy
+- [Getting started](getting-started.md) — degit the template and set up through Vercel deploy
 - [Commands](commands.md) — all `pnpm` scripts and code generation
 - [FAQ](faq.md) — common setup questions
 

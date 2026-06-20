@@ -157,10 +157,10 @@ Email notifications are optional and require:
 
 No. The `guide-site/` folder is excluded via `.degitignore` so cloned starters don't inherit the deployed documentation app. Markdown files in `docs/` remain for local reference.
 
-Use [tiged](https://github.com/tiged/tiged) for ignore support:
+Use [tiged](https://github.com/tiged/tiged) for ignore support — full walkthrough in [getting-started.md](getting-started.md#1-get-the-starter):
 
 ```bash
-npx tiged your-org/actta-studio-sanity-starter --mode=git
+npx tiged your-org/actta-studio-sanity-starter --mode=git my-project
 ```
 
 Full documentation lives at [sanity-starter-guide.vercel.app](https://sanity-starter-guide.vercel.app).

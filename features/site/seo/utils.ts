@@ -1,36 +1,42 @@
-import type { Metadata } from 'next'
-import { sanityFetch } from '~/features/sanity/fetch'
-import { SITE_QUERY } from '~/features/sanity/queries'
-import { getOgImageSrc } from '~/features/sanity/image'
-import type { SanityImage } from '~/features/sanity/types'
-import { env } from '~/env'
+import type { Metadata } from "next";
+import { env } from "~/env";
+import { sanityFetch } from "~/features/sanity/fetch";
+import { getOgImageSrc } from "~/features/sanity/image";
+import { SITE_QUERY } from "~/features/sanity/queries";
+import type { SanityImage } from "~/features/sanity/types";
+
+function toAbsoluteUrl(path: string): string {
+  if (/^https?:\/\//i.test(path)) return path;
+  const base = env.NEXT_PUBLIC_URL.replace(/\/$/, "");
+  return `${base}${path.startsWith("/") ? path : `/${path}`}`;
+}
 
 type SeoInput = {
-  title?: string | null
-  description?: string | null
-  image?: SanityImage | null
-  canonical?: string | null
-  robots?: Metadata['robots']
-}
+  title?: string | null;
+  description?: string | null;
+  image?: SanityImage | null;
+  canonical?: string | null;
+  robots?: Metadata["robots"];
+};
 
 export async function seo(input: SeoInput = {}): Promise<Metadata> {
   const site = await sanityFetch<{
-    name?: string | null
+    name?: string | null;
     seoMetadata?: {
-      title?: string | null
-      description?: string | null
-      image?: SanityImage | null
-      noIndex?: boolean | null
-    } | null
+      title?: string | null;
+      description?: string | null;
+      image?: SanityImage | null;
+      noIndex?: boolean | null;
+    } | null;
   }>({
     query: SITE_QUERY,
-    options: { next: { tags: ['site'] }, stega: false },
-  })
+    options: { next: { tags: ["site"] }, stega: false },
+  });
 
-  const title = input.title ?? site?.seoMetadata?.title ?? site?.name ?? undefined
-  const description = input.description ?? site?.seoMetadata?.description ?? undefined
-  const image = input.image ?? site?.seoMetadata?.image
-  const ogImage = image ? getOgImageSrc(image) : undefined
+  const title = input.title ?? site?.seoMetadata?.title ?? site?.name ?? undefined;
+  const description = input.description ?? site?.seoMetadata?.description ?? undefined;
+  const image = input.image ?? site?.seoMetadata?.image;
+  const ogImage = image ? getOgImageSrc(image) : undefined;
 
   return {
     title,
@@ -43,7 +49,7 @@ export async function seo(input: SeoInput = {}): Promise<Metadata> {
       images: ogImage ? [{ url: ogImage, width: 1200, height: 630 }] : [],
     },
     alternates: {
-      canonical: input.canonical ?? env.NEXT_PUBLIC_URL,
+      canonical: toAbsoluteUrl(input.canonical ?? "/"),
     },
-  }
+  };
 }

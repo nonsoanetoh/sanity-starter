@@ -17,3 +17,5 @@ To customize, edit the `::view-transition-old(root)` and `::view-transition-new(
 ## Reduced motion
 
 Users with `prefers-reduced-motion: reduce` still get instant navigations. Lenis smooth scroll is also disabled in that case.
+
+Media parallax (`ParallaxWrapper`) is disabled under reduced motion as well — see [media.md](media.md).

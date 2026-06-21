@@ -4,7 +4,8 @@
  */
 
 function toCamelCase(value) {
-  return value.replace(/-([a-z])/g, (_, char) => char.toUpperCase());
+  const str = String(value ?? "");
+  return str.replace(/-([a-z])/g, (_, char) => char.toUpperCase());
 }
 
 function toSchemaName(value) {
@@ -18,9 +19,6 @@ function toPascalSectionName(value) {
 }
 
 export default function (plop) {
-  plop.setHelper("schemaName", (name) => toSchemaName(name));
-  plop.setHelper("pascalSectionName", (name) => toPascalSectionName(name));
-
   plop.setGenerator("page-builder-section", {
     description:
       "Scaffold a new page-builder section (schema + component + registries)",
@@ -56,9 +54,9 @@ export default function (plop) {
       },
     ],
     actions: (data) => {
-      const fileBase = data.name;
-      const schemaName = toSchemaName(data.name);
-      const pascalName = toPascalSectionName(data.name);
+      const fileBase = String(data.name).trim();
+      const schemaName = toSchemaName(fileBase);
+      const pascalName = toPascalSectionName(fileBase);
 
       return [
         {
@@ -71,7 +69,7 @@ export default function (plop) {
           type: "add",
           path: "features/page-builder/sections/{{fileBase}}-section.tsx",
           templateFile: "templates/page-builder-section/component.tsx.hbs",
-          data: { pascalName },
+          data: { pascalName, fileBase },
         },
         {
           type: "append",

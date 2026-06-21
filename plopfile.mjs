@@ -8,6 +8,15 @@ function toCamelCase(value) {
   return str.replace(/-([a-z])/g, (_, char) => char.toUpperCase());
 }
 
+function normalizeFileBase(value) {
+  const trimmed = String(value ?? "").trim().toLowerCase();
+  return trimmed.endsWith("-section") ? trimmed.slice(0, -"-section".length) : trimmed;
+}
+
+function isValidKebabCase(value) {
+  return /^[a-z][a-z0-9]*(-[a-z0-9]+)*$/.test(value);
+}
+
 function toSchemaName(value) {
   const camel = toCamelCase(value);
   return camel.endsWith("Section") ? camel : `${camel}Section`;
@@ -27,14 +36,21 @@ export default function (plop) {
         type: "input",
         name: "name",
         message: "Section name (kebab-case, e.g. text-banner):",
-        validate: (v) => (v ? true : "Required"),
+        validate: (value) => {
+          const fileBase = normalizeFileBase(value);
+          if (!fileBase) return "Required";
+          if (!isValidKebabCase(fileBase)) {
+            return "Use kebab-case letters and numbers (e.g. text-banner)";
+          }
+          return true;
+        },
       },
       {
         type: "input",
         name: "title",
         message: "Studio title:",
         default: (answers) =>
-          answers.name
+          normalizeFileBase(answers.name)
             .split("-")
             .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
             .join(" ") + " Section",
@@ -54,20 +70,20 @@ export default function (plop) {
       },
     ],
     actions: (data) => {
-      const fileBase = String(data.name).trim();
+      const fileBase = normalizeFileBase(data.name);
       const schemaName = toSchemaName(fileBase);
       const pascalName = toPascalSectionName(fileBase);
 
       return [
         {
           type: "add",
-          path: "sanity/schemas/page-sections/{{fileBase}}-section.ts",
+          path: `sanity/schemas/page-sections/${fileBase}-section.ts`,
           templateFile: "templates/page-builder-section/schema.ts.hbs",
           data: { schemaName, fileBase, title: data.title, icon: data.icon },
         },
         {
           type: "add",
-          path: "features/page-builder/sections/{{fileBase}}-section.tsx",
+          path: `features/page-builder/sections/${fileBase}-section.tsx`,
           templateFile: "templates/page-builder-section/component.tsx.hbs",
           data: { pascalName, fileBase },
         },
@@ -75,48 +91,42 @@ export default function (plop) {
           type: "append",
           path: "sanity/schemas/page-sections/index.ts",
           pattern: "// PLOP: Add Import",
-          template: `import { {{schemaName}} } from './{{fileBase}}-section'`,
-          data: { schemaName, fileBase },
+          template: `import { ${schemaName} } from './${fileBase}-section'`,
         },
         {
           type: "append",
           path: "sanity/schemas/page-sections/index.ts",
           pattern: "// PLOP: Add Export",
-          template: "  {{schemaName}},",
-          data: { schemaName },
+          template: `  ${schemaName},`,
         },
         {
           type: "append",
           path: "sanity/schemas/index.ts",
           pattern: "// PLOP: Add Section Import",
-          template: `import { {{schemaName}} } from './page-sections/{{fileBase}}-section'`,
-          data: { schemaName, fileBase },
+          template: `import { ${schemaName} } from './page-sections/${fileBase}-section'`,
         },
         {
           type: "append",
           path: "sanity/schemas/index.ts",
           pattern: "// PLOP: Add Section Export",
-          template: "  {{schemaName}},",
-          data: { schemaName },
+          template: `  ${schemaName},`,
         },
         {
           type: "append",
-          path: "features/page-builder/page-sections.tsx",
+          path: "features/page-builder/sections-list.tsx",
           pattern: "// PLOP: Add Import",
-          template: `  {{schemaName}}: dynamic(() =>
-    import('~/features/page-builder/sections/{{fileBase}}-section').then((m) => m.{{pascalName}}),
+          template: `  ${schemaName}: dynamic(() =>
+    import('~/features/page-builder/sections/${fileBase}-section').then((m) => m.${pascalName}),
   ),`,
-          data: { schemaName, fileBase, pascalName },
         },
         {
           type: "append",
           path: "features/sanity/queries.ts",
           pattern: "// PLOP: Add Section Projection",
-          template: `  _type == "{{schemaName}}" => {
+          template: `  _type == "${schemaName}" => {
     headline,
     subheadline
   },`,
-          data: { schemaName },
         },
       ];
     },
